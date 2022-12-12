@@ -4,10 +4,13 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+
+	sc "gitlab.com/fahecom/platform/service-catalog/pkg/model"
 )
 
-// GetAllServices returns list of Avengers
-func (c Client) GetAllServices() ([]*Service, error) {
+// GetAllServices returns list of Services
+func (c Client) GetAllServices() ([]*sc.Service, error) {
+
 	req, err := http.NewRequest("GET", fmt.Sprintf("%s/services", c.HostURL), nil)
 	if err != nil {
 		return nil, err
@@ -19,8 +22,7 @@ func (c Client) GetAllServices() ([]*Service, error) {
 	}
 
 	// var services []*Service
-	var serviceCatalogue ServiceCatalog
-	// err = json.Unmarshal(body, &services)
+	var serviceCatalogue sc.ServiceCatalog
 	err = json.Unmarshal(body, &serviceCatalogue)
 	if err != nil {
 		return nil, err
