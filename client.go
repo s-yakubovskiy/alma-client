@@ -77,10 +77,10 @@ func (c *Client) doRetryableHTTPRequest(req *http.Request) (resp *http.Response,
 		if err != nil {
 			return
 		}
-		defer resp.Body.Close()
+		// defer resp.Body.Close()
 
 		if a.More() && resp.StatusCode/100 == 5 {
-			fmt.Printf("Attemtping to retry request, to %s", resp.Request.URL)
+			fmt.Printf("Attemtpting to retry request, to %s", resp.Request.URL)
 			continue
 		}
 		return
