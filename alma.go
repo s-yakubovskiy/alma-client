@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	v1 "gitlab.com/fahecom/platform/release-eng/service-catalog-app/api/service-catalog/v1"
 	sc "gitlab.com/fahecom/platform/release-eng/service-catalog-app/pkg/model"
 )
 
@@ -32,7 +33,7 @@ func (c Client) GetAllServices() ([]*sc.Service, error) {
 }
 
 // GetService returns meta of Service
-func (c Client) GetService(service string) (*sc.Service, error) {
+func (c Client) GetService(service string) (*v1.GetServiceReply, error) {
 
 	req, err := http.NewRequest("GET", fmt.Sprintf("%s/services/%s", c.HostURL, service), nil)
 	if err != nil {
@@ -45,7 +46,8 @@ func (c Client) GetService(service string) (*sc.Service, error) {
 	}
 
 	// var services []*Service
-	var serviceCatalogue sc.Service
+	// var serviceCatalogue sc.Service
+	var serviceCatalogue v1.GetServiceReply
 	err = json.Unmarshal(body, &serviceCatalogue)
 	if err != nil {
 		return nil, err
