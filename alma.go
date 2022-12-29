@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
-	sc "gitlab.com/fahecom/platform/service-catalog/pkg/model"
+	sc "gitlab.com/fahecom/platform/release-eng/service-catalog-app/pkg/model"
 )
 
 // GetAllServices returns list of Services
